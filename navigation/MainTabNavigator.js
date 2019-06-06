@@ -90,11 +90,12 @@ LoginStack.navigationOptions = {
     />
   )
 };
+dynamicNavigation = {HomeStack};
+var user = firebase.auth().currentUser;
+if (user) {
+  dynamicNavigation = {HomeStack,MemesStack,RandomMemStack,SignUpStack,LoginStack,};
+} else {
+  dynamicNavigation = {HomeStack,MemesStack,RandomMemStack,SignUpStack,LoginStack,};
+}
 
-export default createBottomTabNavigator({
-  HomeStack,
-  MemesStack,
-  RandomMemStack,
-  SignUpStack,
-  LoginStack
-});
+export default createBottomTabNavigator(dynamicNavigation);

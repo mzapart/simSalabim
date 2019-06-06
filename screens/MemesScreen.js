@@ -1,13 +1,19 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { Text } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
 
 class MemesScreen extends React.Component {
+  static navigationOptions = {
+    header: null,
+  };
   render() {
     return (
-      <View>
+      <ScrollView>
         <Text>Every1 can see it fetch from firebase</Text>
-      </View>
+      </ScrollView>
     );
   }
+  
 }
+
 export default MemesScreen;

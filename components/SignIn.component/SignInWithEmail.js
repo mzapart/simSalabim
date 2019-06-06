@@ -1,3 +1,4 @@
+//logged out users only!
 import React from "react";
 import { Text, View, Button } from "react-native";
 import {
@@ -20,6 +21,7 @@ class SignInWithEmail extends React.Component {
     };
   }
 
+
   onLogin = () => {
     const { email, password } = this.state;
 
@@ -40,21 +42,26 @@ class SignInWithEmail extends React.Component {
 
     return (
       <View>
-        <Text>Logout logged uer ca seeit</Text>
+
 
         <Input
-          placeholder="INPUT WITH ICON"
-          leftIcon={{ type: "font-awesome", name: "chevron-left" }}
+          placeholder="  E-mail"
+          leftIcon={<Icon name="user" size={24} color="black" />}
           onChangeText={email => this.setState({ email })}
         />
 
         <Input
-          placeholder="INPUT WITH CUSTOM ICON"
-          leftIcon={<Icon name="user" size={24} color="black" />}
+          placeholder="  Password"
+          
+          leftIcon={{ type: "font-awesome", name: "key", color: "black" }}
           onChangeText={pasword => this.setState({ password })}
         />
 
-        <Button title="Sign In With Email" onPress={this.onLogin} />
+        <Button 
+        title="Sign In With Email"
+         onPress={this.onLogin}
+         color="#f57c00" />
+     
       </View>
     );
   }

@@ -1,7 +1,7 @@
 import React from "react";
 import { Text, View, Button, Item } from "react-native";
 import firebase from "../../firebase.js";
-import { Input, Label } from "react-native-elements";
+import { TextInput } from "react-native-gesture-handler";
 
 class SignUp extends React.Component {
   constructor(props) {
@@ -12,7 +12,6 @@ class SignUp extends React.Component {
       password: ""
     };
   }
-
   SignUp = (email, password) => {
     try {
       firebase.auth().createUserWithEmailAndPassword(email, password);
@@ -26,23 +25,27 @@ class SignUp extends React.Component {
 
     return (
       <View>
-        <Text>Email</Text>
-        <Input
+        <Text style = {{borderBottomWidth: 2, borderBottomColor:'grey'}}>Email:</Text>
+        <TextInput
           autoCapitalize="none"
+          style={{height: 40}}
           autoCorrect={false}
           onChangeText={email => this.setState({ email })}
         />
 
-        <Text>Password</Text>
-        <Input
+        <Text style = {{borderBottomWidth: 2, borderBottomColor:'grey'}}>Password:</Text>
+        <TextInput
           secureTextEntry={true}
+          style={{height: 40}}
           autoCapitalize="none"
           autoCorrect={false}
           onChangeText={password => this.setState({ password })}
         />
         <Button
-          title="SignUp!"
-          onPress={() => this.SignUp(this.state.email, this.state.password)}
+           onPress={() => this.SignUp(this.state.email, this.state.password)}
+          title="Sing Up"
+          color="#f57c00"
+          accessibilityLabel="SignUp data submit button"
         />
       </View>
     );

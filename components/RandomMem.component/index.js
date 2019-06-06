@@ -1,10 +1,9 @@
 import React from "react";
-import {ScrollView, Text, Button, Dimensions } from "react-native";
-import Image from 'react-native-scalable-image';
+import { Text, View, Button } from "react-native";
 import { Accelerometer } from "expo";
 const API = "https://some-random-api.ml/meme";
-
-class RandomMemScreen extends React.Component {
+class RandomMem extends React.Component {
+    
   constructor(props) {
     super(props);
 
@@ -15,9 +14,7 @@ class RandomMemScreen extends React.Component {
       accelerometerData: { x: 0 }
     };
   }
-  static navigationOptions = {
-    header: null,
-  };
+ 
 
   componentDidMount() {
     this.getRandomMem();
@@ -54,36 +51,5 @@ class RandomMemScreen extends React.Component {
       .then(data => this.setState({ mem: data, isLoading: false }))
       .catch(error => this.setState({ error, isLoading: false }));
   };
-
-  render() {
-    const { mem, isLoading, error } = this.state;
-
-    if (error) {
-      return <Text>{error.message}</Text>;
-    }
-
-    if (isLoading) {
-      return <Text>Loading ...</Text>;
-    }
-
-    return (
-      <>
-      <ScrollView>
-        <Image
-          source={{ uri: mem.image }}
-          width={Dimensions.get('window').width}
-        />
-        {this.state.accelerometerData < -10 && this.getRandomMem()}
-
-      </ScrollView>
-      <Button 
-              color="#f57c00"
-              title="Roll next!"
-              onPress={this.getRandomMem}  
-      />
-      </>
-    );
-  }
 }
-
-export default RandomMemScreen;
+export default RandomMem;
